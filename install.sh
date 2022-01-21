@@ -32,31 +32,28 @@ echo
 
 # Set up partitions
 set +x
-while true; do
-	drive="$(lsblk --nodeps | tail -n +2 | fzf --prompt="Select a drive to partition: " | awk '{print $1}')"
-	[ "$drive" != "" ] || continue
+drive="$(lsblk --nodeps | tail -n +2 | fzf --prompt="Select a drive to partition: " | awk '{print $1}')"
+[ "$drive" == "" ] && exit 1
 
-	echo "************************************************************************"
-	echo "Set up your partitions on drive: /dev/$drive"
-	echo
-	echo "Hints:"
-	echo "  p: list partitions"
-	echo "  d: delete partition"
-	echo "  n: create new partition"
-	echo "  w: write changes"
-	echo "  q: quit without writing"
-	echo
-	echo "Guidelines:"
-	echo "  1. delete all partitions"
-	echo "  2. create /boot partition (default first sector; +1G size)"
-	echo "  3. create / partition (default first sector; +30G size)"
-	echo "  4. create /home partition (default first sector; default last sector)"
-	echo "  5. write partitions"
-	echo "************************************************************************"
+echo "************************************************************************"
+echo "Set up your partitions on drive: /dev/$drive"
+echo
+echo "Hints:"
+echo "  p: list partitions"
+echo "  d: delete partition"
+echo "  n: create new partition"
+echo "  w: write changes"
+echo "  q: quit without writing"
+echo
+echo "Guidelines:"
+echo "  1. delete all partitions"
+echo "  2. create /boot partition (default first sector; +1G size)"
+echo "  3. create / partition (default first sector; +30G size)"
+echo "  4. create /home partition (default first sector; default last sector)"
+echo "  5. write partitions"
+echo "************************************************************************"
 
-	fdisk /dev/"$drive"
-	break
-done
+fdisk /dev/"$drive"
 echo
 
 # Create filesystems
