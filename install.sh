@@ -102,3 +102,6 @@ echo
 set -x
 basestrap /mnt base base-devel runit elogind-runit
 
+# Basic initial system setup
+cp fstab-clean /mnt/etc/fstab
+fstabgen -U /mnt >> /mnt/etc/fstab
