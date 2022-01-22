@@ -50,8 +50,29 @@ pacman -S grub
 grub-install --target=i386-pc /dev/"$drive"
 grub-mkconfig -o /boot/grub/grub.cfg
 
-# Password
+# Root password
 set +x
 echo
 passwd
+
+# Non-root user
+echo
+echo "Enter username: "
+read username
+
+set -x
+useradd -m -g wheel "$username"
+set +x
+
+echo
+passwd "$username"
+
+# Sudoers
+sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
+
+cat << EOF >> /etc/sudoers
+
+## Don't need to reinsert password in each different terminal a wheel user uses sudo in.
+Defaults !tty_tickets
+EOF
 
