@@ -23,8 +23,10 @@ echo
 set -x
 
 # Install prereqs
-pacman -Sy --noconfirm
-pacman -S --noconfirm fzf
+alias pacman='pacman --noconfirm'
+
+pacman -Sy
+pacman -S fzf
 
 alias fzf='fzf --layout=reverse'
 alias lsblk='lsblk -o NAME,FSTYPE,SIZE,TYPE,MOUNTPOINTS,LABEL,UUID'
@@ -100,7 +102,7 @@ echo
 [[ $REPLY =~ ^[Yy]$ ]] || exit 0
 
 set -x
-basestrap /mnt base base-devel runit elogind-runit
+basestrap /mnt base base-devel runit elogind-runit pacman-contrib
 
 # Basic initial system setup
 cp fstab-clean /mnt/etc/fstab
