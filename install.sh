@@ -105,3 +105,6 @@ basestrap /mnt base base-devel runit elogind-runit
 # Basic initial system setup
 cp fstab-clean /mnt/etc/fstab
 fstabgen -U /mnt >> /mnt/etc/fstab
+
+cp ./initialize.sh /mnt/
+artix-chroot /mnt sudo sh ./initialize.sh
