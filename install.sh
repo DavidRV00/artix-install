@@ -79,6 +79,7 @@ mount_part() {
 		part=$( get_part "Select the $dir partition to mount: " )
 		[ "$part" != "" ] || continue
 		set -x
+		mkdir -p /mnt"$dir"
 		mount /dev/"$part" /mnt"$dir"
 		set +x
 		break
@@ -86,12 +87,6 @@ mount_part() {
 }
 
 mount_part "/"
-
-set -x
-mkdir -p /mnt/boot
-mkdir -p /mnt/home
-set +x
-
 mount_part "/boot"
 mount_part "/home"
 echo
