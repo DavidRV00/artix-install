@@ -109,4 +109,12 @@ cp fstab-clean /mnt/etc/fstab
 fstabgen -U /mnt >> /mnt/etc/fstab
 
 cp ./initialize.sh /mnt/
-artix-chroot /mnt sudo sh ./initialize.sh
+artix-chroot /mnt sudo sh ./initialize.sh "$drive"
+
+# Cleanup
+rm -f /mnt/initialize.sh
+
+# Done!
+echo
+read -p "Installation done! Press any key to shut down. " -n 1 -r
+shutdown -h now
