@@ -31,6 +31,7 @@ pacman -S networkmanager networkmanager-runit
 ln -s /etc/runit/sv/NetworkManager/ /etc/runit/runsvdir/current
 
 # Hosts and hostname
+set +x
 echo
 echo "Enter hostname: "
 read hn
@@ -44,11 +45,13 @@ cat << EOF >> /etc/hosts
 EOF
 
 # Bootloader
+set -x
 pacman -S grub
 grub-install --target=i386-pc /dev/"$drive"
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Password
+set +x
 echo
 passwd
 

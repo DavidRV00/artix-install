@@ -115,6 +115,7 @@ artix-chroot /mnt sudo sh ./initialize.sh "$drive"
 rm -f /mnt/initialize.sh
 
 # Done!
+set +x
 echo
 read -p "Installation done! Press any key to shut down. " -n 1 -r
 shutdown -h now
