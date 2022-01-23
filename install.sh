@@ -37,6 +37,7 @@ set +x
 drive="$(lsblk --nodeps | tail -n +2 | fzf --prompt="Select a drive to partition: " | awk '{print $1}')"
 [ "$drive" == "" ] && exit 1
 
+clear
 echo "************************************************************************"
 echo "Set up your partitions on drive: /dev/$drive"
 echo
@@ -71,6 +72,8 @@ while true; do
 	set -x
 	mkfs.ext4 /dev/"$part"
 	set +x
+	sleep 0.5
+	clear
 done
 echo
 
