@@ -53,6 +53,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Root password
 set +x
 echo
+echo "root:"
 passwd
 
 # Non-root user
@@ -66,6 +67,7 @@ usermod -a -G users "$username"
 set +x
 
 echo
+echo "$username:"
 passwd "$username"
 
 # Sudoers
