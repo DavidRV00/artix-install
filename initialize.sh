@@ -70,6 +70,8 @@ echo
 echo "$username:"
 passwd "$username"
 
+sex -x
+
 # Sudoers
 sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
 
@@ -78,4 +80,6 @@ cat << EOF >> /etc/sudoers
 ## Don't need to reinsert password in each different terminal a wheel user uses sudo in.
 Defaults !tty_tickets
 EOF
+
+sex +x
 
