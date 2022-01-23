@@ -101,7 +101,7 @@ lsblk
 echo
 
 # Install base operating system
-read -p "Continue to install base operating system to /dev/$drive [y/n]? " -n 1 -r
+read -p "Continue to bootstrap operating system to /dev/$drive [y/n]? " -n 1 -r
 echo
 [[ $REPLY =~ ^[Yy]$ ]] || exit 0
 
