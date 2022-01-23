@@ -87,6 +87,7 @@ mount_part() {
 		mkdir -p /mnt"$dir"
 		mount /dev/"$part" /mnt"$dir"
 		set +x
+		clear
 		break
 	done
 }
