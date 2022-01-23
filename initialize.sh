@@ -61,7 +61,8 @@ echo "Enter username: "
 read username
 
 set -x
-useradd -m -g wheel users "$username"
+useradd -m -g wheel "$username"
+usermod -a -G users "$username"
 set +x
 
 echo
