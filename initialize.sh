@@ -70,7 +70,7 @@ echo
 echo "$username:"
 passwd "$username"
 
-sex -x
+sed -x
 
 # Sudoers
 sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
@@ -81,5 +81,5 @@ cat << EOF >> /etc/sudoers
 Defaults !tty_tickets
 EOF
 
-sex +x
+sed +x
 
