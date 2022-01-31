@@ -70,7 +70,7 @@ echo
 echo "$username:"
 passwd "$username"
 
-sed -x
+set -x
 
 # Sudoers
 sed -i 's/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
