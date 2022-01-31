@@ -81,5 +81,5 @@ cat << EOF >> /etc/sudoers
 Defaults !tty_tickets
 EOF
 
-sed +x
+set +x
 
