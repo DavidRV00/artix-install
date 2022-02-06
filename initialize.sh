@@ -27,8 +27,9 @@ locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 # Network management
-pacman -S networkmanager networkmanager-runit
+pacman -S networkmanager networkmanager-runit connman connman-runit
 ln -s /etc/runit/sv/NetworkManager/ /etc/runit/runsvdir/current
+ln -s /etc/runit/sv/connmand/ /etc/runit/runsvdir/current
 
 # Hosts and hostname
 set +x
@@ -62,8 +63,8 @@ echo "Enter username: "
 read username
 
 set -x
-useradd -m -g wheel "$username"
-usermod -a -G users "$username"
+useradd -m "$username"
+usermod -a -G wheel,users "$username"
 set +x
 
 echo
