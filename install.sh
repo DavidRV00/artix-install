@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This script installs a non-UEFI, ext4, runit system with partitions for /, /boot, and /home.
 
@@ -51,7 +51,7 @@ echo
 echo "Guidelines:"
 echo "  1. delete all partitions"
 echo "  2. create /boot partition (default first sector; +1G size)"
-echo "  3. create / partition (default first sector; +30G size)"
+echo "  3. create / partition (default first sector; +50G size)"
 echo "  4. create /home partition (default first sector; default last sector)"
 echo "  5. write partitions"
 echo "************************************************************************"
