@@ -47,8 +47,8 @@ EOF
 
 # Bootloader
 set -x
-pacman -S grub
-grub-install --target=i386-pc /dev/"$drive"
+pacman -S grub efibootmgr
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Root password

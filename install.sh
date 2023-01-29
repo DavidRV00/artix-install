@@ -1,19 +1,19 @@
 #!/bin/bash
 
-# This script installs a non-UEFI, ext4, runit system with partitions for /, /boot, and /home.
+# This script installs an ext4, runit system with partitions for /, /boot, and /home.
 
 if [ "$(id -u)" != 0 ]; then
 	echo "Must be run as root."
 	exit 1
 fi
 
-# Check UEFI or not
-ls /sys/firmware/efi/efivars
-if [ $? -eq 0 ]; then
-	echo UEFI
-	exit 1
-fi
-echo
+## Check UEFI or not
+#ls /sys/firmware/efi/efivars
+#if [ $? -eq 0 ]; then
+#  echo UEFI
+#  exit 1
+#fi
+#echo
 
 # Check internet
 ping -c 3 artixlinux.org
@@ -65,6 +65,17 @@ get_part() {
 	part="$(lsblk --list | grep "^$drive[0-9]\+.*" | fzf --prompt="$prompt" | awk '{print $1}')"
 	echo "$part"
 }
+
+while true; do
+	part=$( get_part "Select a partition to format to fat (esc to stop): " )
+	[ "$part" != "" ] || break
+	set -x
+	mkfs.fat -F32 /dev/"$part"
+	set +x
+	sleep 0.5
+	clear
+done
+echo
 
 while true; do
 	part=$( get_part "Select a partition to format to ext4 (esc to stop): " )
